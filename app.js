@@ -1,5 +1,8 @@
 const result = document.getElementById("result");
 
+let body = document.querySelector("body");
+body.style.backgroundColor = "#ccc"
+
 // document.addEventListener("DOMContentLoaded", function () {
 //   getUsers();
 // });
@@ -15,6 +18,8 @@ function displayUsers(users) {
   let style = [
     "table",
     "table-primary",
+    "table-hover",
+    "table-dark",
     "table-striped",
     "table-hover",
     "table-bordered",
@@ -84,7 +89,7 @@ async function todosFn() {
 // }
 
 function displayTodos(todos) {
-  result.innerHTML = ""; 
+  result.innerHTML = "";
 
   todos.forEach((item) => {
     const ul = document.createElement("ul");
@@ -102,30 +107,29 @@ function displayTodos(todos) {
     ul.style.alignItems = "center";
 
     if (item.completed) {
-      ul.style.backgroundColor = "#C8E6C9"; 
-      ul.style.borderLeft = "5px solid #388E3C"; 
+      ul.style.backgroundColor = "#C8E6C9";
+      ul.style.borderLeft = "5px solid #388E3C";
       ul.style.fontWeight = "bold";
     } else {
-      ul.style.backgroundColor = "#FFCDD2"; 
+      ul.style.backgroundColor = "#FFCDD2";
       ul.style.borderLeft = "5px solid #D32F2F";
     }
 
     ul.style.listStyleType = "none";
     ul.classList.add("row", "offset-1", "text-dark");
 
-    const idLi = ul.querySelector('.todo-id');
-    const titleLi = ul.querySelector('.todo-title');
-    const statusLi = ul.querySelector('.todo-status');
+    const idLi = ul.querySelector(".todo-id");
+    const titleLi = ul.querySelector(".todo-title");
+    const statusLi = ul.querySelector(".todo-status");
 
     idLi.style.marginRight = "15px";
     idLi.style.flex = "0 0 auto";
     titleLi.style.flex = "1";
-    statusLi.style.marginLeft = "auto"; 
+    statusLi.style.marginLeft = "auto";
 
     result.appendChild(ul);
   });
 }
-
 
 async function photosFn() {
   const response = await fetch("https://jsonplaceholder.typicode.com/photos");
@@ -133,10 +137,10 @@ async function photosFn() {
   displayPhotos(photos);
 }
 
-let style = document.createElement('style');
+let style = document.createElement("style");
 
 function displayPhotos(photos) {
-  result.innerHTML = ""; 
+  result.innerHTML = "";
 
   let res = document.createElement("div");
   res.classList.add("photo-grid");
@@ -154,7 +158,6 @@ function displayPhotos(photos) {
 
     res.appendChild(div);
   }
-
 
   result.appendChild(res);
 
@@ -192,13 +195,8 @@ function displayPhotos(photos) {
     color: #333;
   }
 `;
-document.head.appendChild(style);
-
+  document.head.appendChild(style);
 }
-
-
-
-
 
 async function albumsFn() {
   const response = await fetch("https://jsonplaceholder.typicode.com/albums");
@@ -206,10 +204,9 @@ async function albumsFn() {
   displayAlbums(albums);
 }
 
-
 function displayAlbums(albums) {
-  result.innerHTML = ""; 
-  
+  result.innerHTML = "";
+
   let ul = document.createElement("ul");
   ul.style.listStyle = "none";
   ul.style.padding = "0";
@@ -224,9 +221,9 @@ function displayAlbums(albums) {
   result.appendChild(ul);
 
   console.log(albums);
-  
-style.textContent = ""
-style.textContent = `
+
+  style.textContent = "";
+  style.textContent = `
   .album-item {
     background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
     margin: 10px 0;
@@ -242,11 +239,8 @@ style.textContent = `
     background: linear-gradient(135deg, #fda085 0%, #f6d365 100%);
   }
 `;
-document.head.appendChild(style);
-
+  document.head.appendChild(style);
 }
-
-
 
 async function commentsFn() {
   const response = await fetch("https://jsonplaceholder.typicode.com/comments");
@@ -254,11 +248,8 @@ async function commentsFn() {
   displayComments(comments);
 }
 
-
-
-
 function displayComments(comments) {
-  result.innerHTML = ""; 
+  result.innerHTML = "";
 
   comments.forEach((item) => {
     let div = document.createElement("div");
@@ -271,10 +262,8 @@ function displayComments(comments) {
     result.appendChild(div);
   });
 
-
-  
-style.textContent = ""
-style.textContent = `
+  style.textContent = "";
+  style.textContent = `
   .comment-card {
     background-color: rgba(178,190,181,0.6);
     border: 1px solid #ddd;
@@ -308,18 +297,8 @@ style.textContent = `
     line-height: 1.5;
   }
 `;
-document.head.appendChild(style);
-
-
-
-
+  document.head.appendChild(style);
 }
-
-
-
-
-
-
 
 async function postFunc() {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -339,9 +318,8 @@ async function postFunc() {
 //   });
 // }
 
-
 function displayPosts(posts) {
-  result.innerHTML = ""; 
+  result.innerHTML = "";
 
   posts.forEach((item) => {
     let div = document.createElement("div");
@@ -353,7 +331,7 @@ function displayPosts(posts) {
     result.appendChild(div);
   });
 
-style.textContent = ""
+  style.textContent = "";
   style.textContent = `
   .post-card {
     background: linear-gradient(135deg, #D81990 0%, #19D7C0 100%);
@@ -382,7 +360,5 @@ style.textContent = ""
     line-height: 1.6;
   }
 `;
-document.head.appendChild(style);
-
+  document.head.appendChild(style);
 }
-
