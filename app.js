@@ -272,6 +272,7 @@ function displayComments(comments) {
   });
 
 
+  
 style.textContent = ""
 style.textContent = `
   .comment-card {
