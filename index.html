@@ -8,8 +8,21 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Document</title>
 </head>
-    
+
 <body>
+    <div ></div>
+        <div class="row offset-4 my-4" id="pagenation">
+            <select class="mx-5 btn btn-primary" id="select">
+                <option value="3" hidden>Select...</option>
+                <option value="2">2</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+            <button id="prev" class="btn btn-success ml-5">
+                <</button>
+                    <button id="next" class="btn btn-success mx-2">></button>
+        </div>
     <div class="row offset-3 my-4">
         <button class="btn btn-primary mx-4" onclick="postFunc()">Posts</button>
         <button class="btn btn-secondary mx-4" onclick="commentsFn()">Comments</button>
@@ -20,6 +33,7 @@
     </div>
     <div class="container">
         <div id="result"></div>
+        
     </div>
 
     <script src="./app.js"></script>

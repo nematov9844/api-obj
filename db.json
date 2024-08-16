@@ -1,0 +1,64 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Juliet Oma",
+      "email": "julie@yahoo.com",
+      "number": "08100000000"
+    },
+    {
+      "id": "2",
+      "name": "James Williams",
+      "email": "jameswilly@gmail.com",
+      "number": "08111111111"
+    },
+    {
+      "id": "3",
+      "name": "Ahmed Ali",
+      "email": "ahmedali012@gmail.com",
+      "number": "09022222222"
+    },
+    {
+      "id": "4",
+      "name": "Grace Funsho",
+      "email": "gracefunsho@gmail.com",
+      "number": "09033333333"
+    },
+    {
+      "id": "5",
+      "name": "Fatima Yusuf",
+      "email": "fatyus@gmail.com",
+      "number": "08044444444"
+    },
+    {
+      "id": "6",
+      "name": "Samuel Ojo",
+      "email": "samuel_ojo@yahoo.com",
+      "number": "07055555555"
+    },
+    {
+      "id": "7",
+      "name": "Aisha Bello",
+      "email": "aisha.bello@gmail.com",
+      "number": "09066666666"
+    },
+    {
+      "id": "8",
+      "name": "David Johnson",
+      "email": "david.johnson@gmail.com",
+      "number": "08077777777"
+    },
+    {
+      "id": "9",
+      "name": "Linda Eze",
+      "email": "linda.eze@gmail.com",
+      "number": "09088888888"
+    },
+    {
+      "id": "10",
+      "name": "Peter Akande",
+      "email": "peter.akande@yahoo.com",
+      "number": "08199999999"
+    }
+  ]
+}

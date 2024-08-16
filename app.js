@@ -1,20 +1,48 @@
 const result = document.getElementById("result");
-
+const pagenation = document.getElementById("pagenation");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
 let body = document.querySelector("body");
-body.style.backgroundColor = "#ccc"
+body.style.backgroundColor = "#ccc";
+const select = document.getElementById("select")
+let page = 1;
+let page_end = 2;
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   getUsers();
-// });
+document.addEventListener("DOMContentLoaded",function(){
+  
+})
+
+function toggleBtn(Fn) {
+  prev.addEventListener("click", function () {
+    if (page !== 1) {
+      page--;
+      Fn();
+    }
+  });
+  next.addEventListener("click", function () {
+    page++;
+    Fn();
+  });
+}
 
 async function userFn() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  const users = await response.json();
-  displayUsers(users);
+  try {
+    page_end = select.value;
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/users?_page=${page}&_limit=${page_end}`
+    );
+
+    const users = await response.json();
+    displayUsers(users);
+  } catch (error) {}
 }
 
 function displayUsers(users) {
+  const result = document.getElementById("result");
+  page = 1;
+  toggleBtn(userFn);
   result.innerHTML = "";
+
   let style = [
     "table",
     "table-primary",
@@ -26,36 +54,39 @@ function displayUsers(users) {
     "table-sm",
     "table-responsive-sm",
   ];
+
   let table = document.createElement("table");
   let thead = document.createElement("thead");
   let tbody = document.createElement("tbody");
 
+  thead.innerHTML = `
+    <tr>
+      <th>T/R</th>
+      <th>Name</th>
+      <th>UserName</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Phone Number</th>
+      <th>Website</th>
+      <th>Company</th>    
+    </tr>
+  `;
+
   users.forEach((item, index) => {
     let tr = document.createElement("tr");
-    thead.innerHTML = `
-    <tr>
-    <th>T/R</th>
-    <th>Name</th>
-    <th>UserName</th>
-    <th>Email</th>
-    <th>Address</th>
-    <th>Phone Number</th>
-    <th>Website</th>
-    <th>Company</th>    
-    </tr>
-    `;
     tr.innerHTML = `
-        <td>${index + 1}</td>
-        <td>${item.name}</td>
-        <td>${item.username}</td>
-        <td>${item.email}</td>
-        <td>${item.address.city}</td>
-        <td>${item.phone}</td>
-        <td>${item.website}</td>
-        <td>${item.company.name}</td>
-        `;
+      <td>${index + 1}</td>
+      <td>${item.name}</td>
+      <td>${item.username}</td>
+      <td>${item.email}</td>
+      <td>${item.address.city}</td>
+      <td>${item.phone}</td>
+      <td>${item.website}</td>
+      <td>${item.company.name}</td>
+    `;
     tbody.appendChild(tr);
   });
+
   table.appendChild(thead);
   table.appendChild(tbody);
   table.classList.add(...style);
@@ -63,34 +94,18 @@ function displayUsers(users) {
 }
 
 async function todosFn() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    page_end = select.value;
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/todos?_page=${page}&_limit=${page_end}`
+  );
   const todos = await response.json();
   displayTodos(todos);
 }
-// function displayTodos(todos) {
-//   result.innerHTML = "";
-//   todos.forEach((item) => {
-//     let ul = document.createElement("ul");
-//     ul.innerHTML = `
-//       <li class="col-1">${item.id}</li>
-//       <li class="col">${item.title}</li>
-//       `;
-
-//     if (item.completed) {
-//       ul.style.backgroundColor = "red";
-//       ul.style.fontStyle = "bold"
-//     } else {
-//       ul.style.backgroundColor = "green";
-//     }
-//     ul.style.listStyle = "none";
-//     ul.classList.add("row", "offset-1", "text-white");
-//     result.appendChild(ul);
-//   });
-// }
 
 function displayTodos(todos) {
   result.innerHTML = "";
-
+  toggleBtn(todosFn);
+  page = 1;
   todos.forEach((item) => {
     const ul = document.createElement("ul");
 
@@ -132,7 +147,10 @@ function displayTodos(todos) {
 }
 
 async function photosFn() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/photos");
+  page_end = select.value;
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/photos?_page=${page}&_limit=${page_end}`
+  );
   const photos = await response.json();
   displayPhotos(photos);
 }
@@ -141,7 +159,8 @@ let style = document.createElement("style");
 
 function displayPhotos(photos) {
   result.innerHTML = "";
-
+  toggleBtn(photosFn);
+  page = 1;
   let res = document.createElement("div");
   res.classList.add("photo-grid");
 
@@ -199,14 +218,18 @@ function displayPhotos(photos) {
 }
 
 async function albumsFn() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/albums");
+  page_end = select.value;
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/albums?_page=${page}&_limit=${page_end}`
+  );
   const albums = await response.json();
   displayAlbums(albums);
 }
 
 function displayAlbums(albums) {
   result.innerHTML = "";
-
+  toggleBtn(albumsFn);
+  page = 1;
   let ul = document.createElement("ul");
   ul.style.listStyle = "none";
   ul.style.padding = "0";
@@ -243,14 +266,18 @@ function displayAlbums(albums) {
 }
 
 async function commentsFn() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/comments");
+  page_end = select.value;
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/comments?_page=${page}&_limit=${page_end}`
+  );
   const comments = await response.json();
   displayComments(comments);
 }
 
 function displayComments(comments) {
   result.innerHTML = "";
-
+  toggleBtn(commentsFn);
+  page = 1;
   comments.forEach((item) => {
     let div = document.createElement("div");
     div.classList.add("comment-card");
@@ -301,26 +328,17 @@ function displayComments(comments) {
 }
 
 async function postFunc() {
-  const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+  page_end = select.value;
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${page_end}`
+  );
   const posts = await response.json();
   displayPosts(posts);
 }
 
-// function displayPosts(posts) {
-//   result.innerHTML = "";
-//   posts.forEach((item) => {
-//     let div = document.createElement("div");
-//     div.innerHTML = `
-//     <h3>${item.id}: ${item.title.toUpperCase()}</h2>
-//     <p>${item.body}</p>
-//     `;
-//     result.appendChild(div);
-//   });
-// }
-
 function displayPosts(posts) {
   result.innerHTML = "";
-
+  toggleBtn(postFunc);
   posts.forEach((item) => {
     let div = document.createElement("div");
     div.classList.add("post-card");
